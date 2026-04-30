@@ -1,0 +1,14 @@
+from fastapi import Depends, HTTPException
+from app.services.auth_service import get_current_user
+
+def require_role(allowed_roles: list):
+    def role_checker(current_user = Depends(get_current_user)):
+        print("USER ROLE:", current_user.role)
+        if current_user.role not in allowed_roles:
+            raise HTTPException(
+                status_code=403,
+                detail="You don't have permission"
+            )
+        return current_user
+    return role_checker
+
