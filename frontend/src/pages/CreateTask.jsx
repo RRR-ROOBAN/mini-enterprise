@@ -64,17 +64,30 @@ function CreateTask() {
 
         <select
           onChange={(e) => setPriority(e.target.value)}
-          style={styles.input}
+          style={styles.select}
         >
-          <option value="low">Low</option>
 
-          <option value="medium">
+          <option
+            value="low"
+            style={styles.option}
+          >
+            Low
+          </option>
+
+          <option
+            value="medium"
+            style={styles.option}
+          >
             Medium
           </option>
 
-          <option value="high">
+          <option
+            value="high"
+            style={styles.option}
+          >
             High
           </option>
+
         </select>
 
         <input
@@ -135,6 +148,24 @@ const styles = {
     outline: "none",
     fontSize: "16px",
     background: "rgba(255,255,255,0.15)",
+    color: "#fff",
+  },
+
+  select: {
+    width: "100%",
+    padding: "14px",
+    marginBottom: "18px",
+    borderRadius: "12px",
+    border: "none",
+    outline: "none",
+    fontSize: "16px",
+    background: "#4b5563",
+    color: "#fff",
+    cursor: "pointer",
+  },
+
+  option: {
+    background: "#1f2937",
     color: "#fff",
   },
 

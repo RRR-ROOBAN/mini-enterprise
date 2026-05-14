@@ -94,6 +94,13 @@ function Dashboard() {
 
       {/* 🔥 NAVBAR */}
       <div style={styles.navBar}>
+        <button
+          onClick={() => navigate("/documents")}
+          style={styles.navBtn}
+        >
+          📁 Documents
+        </button>
+
 
         {/* ✅ ONLY ADMIN + MANAGER */}
         {user?.role !== "employee" && (
@@ -105,7 +112,6 @@ function Dashboard() {
           </button>
         )}
 
-        {/* ✅ ALL USERS */}
         <button
           onClick={() => navigate("/kanban")}
           style={styles.navBtn}
@@ -126,6 +132,24 @@ function Dashboard() {
         >
           💬 Comments
         </button>
+
+        <button
+          onClick={() => navigate("/notifications")}
+          style={styles.navBtn}
+        >
+          🔔 Notifications
+        </button>
+
+        {user?.role === "admin" && (
+
+          <button
+            onClick={() => navigate("/audit-logs")}
+            style={styles.navBtn}
+          >
+            📋 Audit Logs
+          </button>
+
+        )}
 
       </div>
 
@@ -208,6 +232,60 @@ function Dashboard() {
 
           </div>
         ))}
+
+      </div>
+
+      {/* 🔥 ENTERPRISE FEATURES */}
+      <div style={styles.enterpriseBox}>
+
+        <h2 style={styles.chartTitle}>
+          🚀 Enterprise Features
+        </h2>
+
+        <div style={styles.enterpriseGrid}>
+
+          {/* ✅ Audit Logs */}
+          <div style={styles.enterpriseCard}>
+
+            <h3>📋 Audit Logs</h3>
+
+            <p>
+              Tracks all enterprise activities
+              including task creation,
+              approvals, updates and workflow
+              monitoring.
+            </p>
+
+            <button
+              style={styles.featureBtn}
+              onClick={() => navigate("/audit-logs")}
+            >
+              View Audit Logs
+            </button>
+
+          </div>
+
+          {/* ✅ Notifications */}
+          <div style={styles.enterpriseCard}>
+
+            <h3>🔔 Notifications</h3>
+
+            <p>
+              Real-time notification system for
+              task assignment, approvals,
+              comments and workflow alerts.
+            </p>
+
+            <button
+              style={styles.featureBtn}
+              onClick={() => navigate("/notifications")}
+            >
+              View Notifications
+            </button>
+
+          </div>
+
+        </div>
 
       </div>
 
@@ -308,6 +386,7 @@ const styles = {
   chartTitle: {
     textAlign: "center",
     marginBottom: "25px",
+    color: "#fff",
   },
 
   row: {
@@ -340,6 +419,42 @@ const styles = {
     width: "40px",
     textAlign: "right",
     color: "#fff",
+  },
+
+  enterpriseBox: {
+    marginTop: "40px",
+    background: "rgba(255,255,255,0.08)",
+    backdropFilter: "blur(10px)",
+    padding: "30px",
+    borderRadius: "20px",
+    color: "#fff",
+  },
+
+  enterpriseGrid: {
+    display: "grid",
+    gridTemplateColumns:
+      "repeat(auto-fit,minmax(320px,1fr))",
+    gap: "20px",
+  },
+
+  enterpriseCard: {
+    background:
+      "linear-gradient(135deg,#1e293b,#111827)",
+    padding: "25px",
+    borderRadius: "18px",
+    boxShadow: "0 8px 20px rgba(0,0,0,0.3)",
+  },
+
+  featureBtn: {
+    marginTop: "18px",
+    background:
+      "linear-gradient(135deg,#2563eb,#7c3aed)",
+    border: "none",
+    padding: "12px 18px",
+    borderRadius: "10px",
+    color: "#fff",
+    fontWeight: "bold",
+    cursor: "pointer",
   },
 };
 

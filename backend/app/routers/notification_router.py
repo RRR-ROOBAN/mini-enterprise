@@ -11,40 +11,42 @@ from app.services.auth_service import (
     get_current_user
 )
 
-from app.services.dashboard_service import (
+from app.services.notification_service import (
 
-    dashboard_summary_service,
+    get_notifications_service,
 
-    task_distribution_service
+    mark_notification_read_service
 )
 
 router = APIRouter(
-    prefix="/dashboard",
-    tags=["Dashboard"]
+    prefix="/notifications",
+    tags=["Notifications"]
 )
 
 
-# ✅ Dashboard Summary
-@router.get("/summary")
-def dashboard_summary(
+# ✅ Get Notifications
+@router.get("/")
+def get_notifications(
     db: Session = Depends(get_db),
     current_user = Depends(get_current_user)
 ):
 
-    return dashboard_summary_service(
+    return get_notifications_service(
         db,
         current_user
     )
 
 
-# ✅ Task Distribution
-@router.get("/task-distribution")
-def task_distribution(
+# ✅ Mark Read
+@router.patch("/{notification_id}/read")
+def mark_read(
+    notification_id: int,
     db: Session = Depends(get_db),
     current_user = Depends(get_current_user)
 ):
 
-    return task_distribution_service(
+    return mark_notification_read_service(
+        notification_id,
         db,
         current_user
     )

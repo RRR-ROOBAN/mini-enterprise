@@ -10,6 +10,10 @@ import Comments from "./pages/Comments";
 import EditTask from "./pages/EditTask";
 
 import ProtectedRoute from "./components/ProtectedRoute";
+import AuditLogs from "./pages/AuditLogs";
+import Notifications from "./pages/Notifications";
+import Documents from "./pages/Documents";
+
 
 function App() {
 
@@ -86,6 +90,33 @@ function App() {
           element={
             <ProtectedRoute>
               <Comments />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute>
+              <Notifications />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/audit-logs"
+          element={
+            <ProtectedRoute>
+              <AuditLogs />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/documents"
+          element={
+            <ProtectedRoute>
+              <Documents />
             </ProtectedRoute>
           }
         />
